@@ -10,18 +10,21 @@ const userroute=require("./user/user.route")
 //use the dependencies
 dotenv.config();
 app.use(express.json());
-app.use(cors({
-  origin: 'https://unishare-x.netlify.app',
-  credentials: true
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: 'https://unishare-x.netlify.app',
+//   credentials: true
+// }));
+
 app.use(express.urlencoded({ extended: true }));
 
 // specify the main routes
 app.use("/api/user",userroute)
 // app.use("/user/userlogin", userroute);
-
 app.use("/api/post/add", postroute);
-app.use("/api/post/get",postroute)
+app.use("/api/post/get",postroute);
+app.use("/api/post/update",postroute);
+app.use("/api/post/delete/",postroute)
 
 //connect to database
 mongoose
@@ -30,6 +33,6 @@ mongoose
   .catch((err) => console.log(err));
 
   //listening 
-app.listen(5000, () => { 
+app.listen(5000,() => { 
   console.log("server is successfully running on port 5000");
 });
