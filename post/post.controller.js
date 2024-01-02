@@ -1,7 +1,6 @@
 const post = require("../model/post.database.js");
 
 module.exports = {
-  
   //declaration of addpost method to insert a post to the database
   addpost: async (req, res) => {
     //destructuring title from body
@@ -62,7 +61,6 @@ module.exports = {
       });
   },
 
-
    postupdate: async (req, res) => {
     try {
       // Update the user's password and other fields in the database
@@ -83,7 +81,6 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-
 
   postdelete:async(req,res)=>{
 try {
