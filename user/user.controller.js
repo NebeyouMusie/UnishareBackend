@@ -3,7 +3,6 @@ const User=require("../model/user.database")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
 module.exports = {
   adduser: async (req, res) => {
     try {
@@ -25,6 +24,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
 
   getuserbyid: async (req, res) => {
     try {
@@ -137,4 +137,5 @@ module.exports = {
       return res.status(500).json(err);
     }
   }
+  
 };
