@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 
 const userschema = new mongoose.Schema(
-   
   { 
     name: {
       type: String,
@@ -20,6 +19,7 @@ const userschema = new mongoose.Schema(
         type:String,
         default:""
     },
+
     user_id:{
         type:String,
         required:true

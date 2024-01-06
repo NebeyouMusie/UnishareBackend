@@ -9,7 +9,6 @@ router.post("/login", login);
 router.get("/",auth,getuserbyid);
 router.put("/update", update);
 
-
 //export the module 
 module.exports = router;
 

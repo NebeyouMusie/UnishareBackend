@@ -1,7 +1,6 @@
 const post = require("../model/post.database.js");
 
 module.exports = {
-  
   //declaration of addpost method to insert a post to the database
   addpost: async (req, res) => {
     //destructuring title from body
@@ -15,16 +14,14 @@ module.exports = {
     if(!title && !description){
       return res.status(400).json({ msg: "title and description should be provided ⚠" }); 
     }
+
+
     else if (!title) {
       return res.status(400).json({ msg: "title should be provided ⚠" });
     }
     else if (!description){
       return res.status(400).json({ msg: "description should be provided ⚠" }); 
-    }
-
-    //check if the length of the title is not greater than 20 words
-   
-    
+    } 
 
     //insert the post to database
     try {
@@ -55,7 +52,7 @@ module.exports = {
       .find({})
       .then(function (users) {
         res.json({
-          data: users,
+          data:users,
         });
       })
       //check and display if there is an error
@@ -63,4 +60,48 @@ module.exports = {
         console.log(err.message);
       });
   },
+
+   postupdate: async (req, res) => {
+    try {
+      // Update the user's password and other fields in the database
+      const updatedpost = await post.findByIdAndUpdate(
+      req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      // Send a success response with the updated user object
+      return res
+        .status(200)
+        .json({ msg: "Post successfully updated!!", updatedpost });
+    } catch (err) {
+      // Handle errors and send an error response
+      console.error(err);
+      return res.status(500).json(err);
+    }
+  },
+
+  postdelete:async(req,res)=>{
+try {
+  const deletedpost = await post.findByIdAndDelete( req.params.id);
+  return res
+    .status(200)
+    .json({ msg: "Post has been deleted!!!", deletedpost });
+} 
+catch (err) {
+  // Handle errors and send an error response
+  console.error(err);
+  return res.status(500).json(err);
+}
+
+  }
+
 };
+
+
+
+
+
+
+
