@@ -40,7 +40,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-
+ 
   login: async (req, res) => {
     try {
       // Find user by name
@@ -117,7 +117,7 @@ module.exports = {
       // Send a success response with the updated user object
       return res
         .status(200)
-        .json({ msg: "Password successfully updated!!", updateduser });
+        .json({ msg: "Password successfully updated 🎉", updateduser });
     } catch (err) {
       // Handle errors and send an error response
       console.error(err);

@@ -1,6 +1,6 @@
 const post = require("../model/post.database.js");
 
-module.exports = {
+module.exports = { 
   
   //declaration of addpost method to insert a post to the database
   addpost: async (req, res) => {

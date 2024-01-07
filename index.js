@@ -11,7 +11,7 @@ const userroute=require("./user/user.route")
 dotenv.config();
 app.use(express.json());
 app.use(cors({
-  origin: 'https://unishare-x.netlify.app',
+  origin: 'http://localhost:5173', //https://unishare-x.netlify.app
   credentials: true
 }));
 app.use(express.urlencoded({ extended: true }));
