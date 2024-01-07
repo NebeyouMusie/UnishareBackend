@@ -3,7 +3,6 @@ const User=require("../model/user.database")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
 module.exports = {
   adduser: async (req, res) => {
     try {
@@ -26,15 +25,32 @@ module.exports = {
     }
   },
 
+
   getuserbyid: async (req, res) => {
     try {
-      // Find user by name
-      const user = await User.find({
+      const user = await User.findOne({
         user_id: req.body.user_id,
       });
 
-      console.log(user);
-      return res.status(200).json(user);
+      // Check if the user exists
+      if (!user) {
+        return res.status(400).json("User Id not found!!");
+      }
+
+      // Compare the provided old password with the stored hashed password
+      const isPasswordValid = await bcrypt.compare(
+        req.body.oldpassword,
+        user.password
+      );
+
+
+      // Log the result of the password comparison for debugging
+      console.log(isPasswordValid);
+
+      // Check if the old password is valid
+      if (!isPasswordValid) {
+        return res.status(400).json("Invalid oldpassword!!");
+      }
     } catch (err) {
       console.error(err);
       return res.status(500).json(err);
@@ -95,11 +111,8 @@ module.exports = {
 
       // Check if the old password is valid
       if (!isPasswordValid) {
-        return res.status(400).json("Invalid password!!");
+        return res.status(400).json("Invalid oldpassword!!");
       }
-
-      // Log the user object for debugging
-      console.log(user);
 
       // Generate a new salt and hash the new password
       const salt = await bcrypt.genSalt(10);
@@ -124,4 +137,5 @@ module.exports = {
       return res.status(500).json(err);
     }
   }
+  
 };
