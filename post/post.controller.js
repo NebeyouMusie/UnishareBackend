@@ -7,8 +7,8 @@ module.exports = {
     const { title, description, date, postType } = req.body;
     const titlelength = title.trim().split();
 
-    if (title.length > 10) {
-      return res.status(400).json({ msg: "title can not proceed 10 characters ⚠" });
+    if (title.length > 20) {
+      return res.status(400).json({ msg: "title can not proceed 20 characters ⚠" });
     }
     //check if the title and description is provided or not
     if(!title && !description){
