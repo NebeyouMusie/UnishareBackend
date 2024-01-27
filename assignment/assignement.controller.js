@@ -1,48 +1,61 @@
+
 const assignment = require("../model/assignment.database");
 
 module.exports = {
-  //declaration of addpost method to insert a post to the database
+  // Method to submit an assignment
   submitAssignment: async (req, res) => {
-    //destructuring title from body
-    // const { course,file } = req.body;
-
-    //insert the post to database
     try {
+      const {course,file} = req.body
+
+      // Creating a new assignment object
       const newassignment = new assignment({
-        course: req.body.course,
-        file: req.body.file,
-       
+        course: course,
+        file: file,
       });
 
+      // Validating if course name and file are provided
+      if (!course) {
+        return res
+          .status(400)
+          .json({ msg: "course type should be provided ⚠" });
+      }
+      if (!file) {
+        return res.status(400).json({ msg: "file should be uploaded ⚠" });
+      }
+
+      // Saving the assignment to the database
       const postedAssignment = await newassignment.save();
+      // Sending success response
       res.status(200).json({
         msg: "Assignment submitted successfully 🎉",
         data: postedAssignment,
       });
-      //check and display if there is an error
     } catch (err) {
+      // Handling errors and sending error response
       res.status(500).json(err);
     }
   },
 
-  // method declaration to retrieve all posts from the database
+  // Method to get all assignments
   getAssignment: (req, res) => {
     assignment
       .find({})
       .then(function (assignment) {
+        // Sending assignments as JSON data
         res.json({
           data: assignment,
         });
       })
-      //check and display if there is an error
       .catch(function (err) {
+        // Handling errors
         console.log(err.message);
       });
   },
 
+  // Method to edit an assignment
   EditAssignment: async (req, res) => {
     try {
-      // Update the user's password and other fields in the database
+      // Updating the assignment
       const updatedAssignment = await assignment.findByIdAndUpdate(
         req.params.id,
         {
@@ -50,36 +63,30 @@ module.exports = {
         },
         { new: true }
       );
-      // Send a success response with the updated user object
+      // Sending success response
       return res
         .status(200)
         .json({ msg: "Assignment successfully updated!!", updatedAssignment });
     } catch (err) {
-      // Handle errors and send an error response
+      // Handling errors
       console.error(err);
       return res.status(500).json(err);
     }
   },
 
-
+  // Method to delete an assignment
   deleteAssignment: async (req, res) => {
     try {
+      // Deleting the assignment
       const deletedAssignment = await assignment.findByIdAndDelete(req.params.id);
+      // Sending success response
       return res
         .status(200)
         .json({ msg: "Assignment has been deleted!!!", deletedAssignment });
     } catch (err) {
-      // Handle errors and send an error response
+      // Handling errors
       console.error(err);
       return res.status(500).json(err);
     }
   },
-
 };
-
-
-
-
-
-
-

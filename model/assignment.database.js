@@ -1,19 +1,20 @@
 // importing mongoose dependency
 const mongoose = require("mongoose");
 
-// create a post schema
+// create an assignment schema
 const assignmentschema = new mongoose.Schema(
   {
     course: {
       type: String,
       required: true,
     },
+
     file: {
       type: String,
       required: true,
     }
-    
   },
+
   { timestamps: true }
 );
 
