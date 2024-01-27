@@ -4,6 +4,7 @@ const User=require("../model/user.database")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+//export the modules 
 module.exports = {
   // Function to add a new user to the database
   adduser: async (req, res) => {
