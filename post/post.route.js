@@ -13,3 +13,4 @@ router.get("/",getposts)
 router.put('/:id',postupdate)
 
 module.exports = router;
+

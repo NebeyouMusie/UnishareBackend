@@ -61,6 +61,7 @@ module.exports = {
     }
   },
 
+
   deleteAssignment: async (req, res) => {
     try {
       const deletedAssignment = await assignment.findByIdAndDelete(req.params.id);
@@ -73,4 +74,12 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
+
 };
+
+
+
+
+
+
+

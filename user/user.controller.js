@@ -135,6 +135,7 @@ module.exports = {
       // Handle errors and send an error response
       console.error(err);
       return res.status(500).json(err);
+      
     }
   }
   
