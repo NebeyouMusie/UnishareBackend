@@ -11,8 +11,15 @@ const assignmentschema = new mongoose.Schema(
     file: {
       type: String,
       required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    userid: {
+      type: String,
+      required: true
     }
-    
   },
   { timestamps: true }
 );

@@ -33,6 +33,7 @@ module.exports = {
         postType: req.body.postType,
         username: req.body.username,
         course: req.body.course,
+        file: req.body.file
       }); 
 
       const postedData = await newpost.save();

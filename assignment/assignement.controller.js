@@ -11,7 +11,8 @@ module.exports = {
       const newassignment = new assignment({
         course: req.body.course,
         file: req.body.file,
-       
+        username: req.body.username,
+        userid: req.body.userid,
       });
 
       const postedAssignment = await newassignment.save();
