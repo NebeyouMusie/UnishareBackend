@@ -11,7 +11,7 @@ const assignmentroute=require("./assignment/assignment.route")
 dotenv.config();
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', //https://unishare-x.netlify.app
+  origin: 'https://unishare-x.netlify.app', //https://unishare-x.netlify.app
   credentials: true
 }));
 app.use(express.urlencoded({ extended: true }));
